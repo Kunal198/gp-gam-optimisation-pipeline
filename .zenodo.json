@@ -38,16 +38,16 @@
     },
     {
       "relation": "isSupplementedBy",
-      "identifier": "10.5281/zenodo.YYYYYYY",
+      "identifier": "10.5281/zenodo.17544324",
       "scheme": "doi",
       "resource_type": "dataset"
     },
     {
       "relation": "isCompiledBy",
       "identifier": "https://github.com/kunalghosh/gp-gam-optimisation-pipeline",
-      "scheme": "url",
+      "scheme": "https://doi.org/10.5281/zenodo.17543623",
       "resource_type": "software"
     }
   ],
-  "notes": "Replace placeholder DOIs (gmd-2025-XXX, zenodo.YYYYYYY) with the final ones before publishing."
+  "notes": "Replace placeholder DOIs (gmd-2025-XXX, 10.5281/zenodo.17544324) with the final ones before publishing."
 }
