@@ -13,7 +13,7 @@ authors:
 version: "1.0.0"
 license: "MIT"
 repository-code: "https://github.com/kunalghosh/gp-gam-optimisation-pipeline"
-doi: "10.5281/zenodo.xxxxxxx"        # Replace with actual Zenodo DOI once assigned
+doi: "10.5281/zenodo.17544324"       
 keywords:
   - Gaussian Process
   - Generalized Additive Model
