@@ -1,0 +1,53 @@
+{
+  "title": "gp-gam-optimisation-pipeline: High-performance workflow for Gaussian Process emulation and GAM fitting",
+  "upload_type": "software",
+  "publication_date": "2025-10-30",
+  "version": "1.0.0",
+  "creators": [
+    {
+      "name": "Ghosh, Kunal",
+      "orcid": "0000-0002-3179-6844",
+      "affiliation": "School of Earth and Environment, University of Leeds, UK"
+    },
+    {
+      "name": "Regayre, Leighton A.",
+      "affiliation": "School of Earth and Environment, University of Leeds, UK"
+    }
+  ],
+  "description": "Baseline and optimised implementations for GP emulation and GAM fitting with a tiny, reproducible example (H2SO4, Jan 2017). Includes conda/R environments, SLURM-ready scripts, and validation utilities.",
+  "license": "MIT",
+  "access_right": "open",
+  "keywords": [
+    "Gaussian Process",
+    "GAM",
+    "Earth System Model",
+    "HPC",
+    "PPE",
+    "mgcv",
+    "DiceKriging",
+    "pygam",
+    "SLURM",
+    "Reproducibility"
+  ],
+  "related_identifiers": [
+    {
+      "relation": "isSupplementTo",
+      "identifier": "10.5194/gmd-2025-XXX",
+      "scheme": "doi",
+      "resource_type": "publication-article"
+    },
+    {
+      "relation": "isSupplementedBy",
+      "identifier": "10.5281/zenodo.YYYYYYY",
+      "scheme": "doi",
+      "resource_type": "dataset"
+    },
+    {
+      "relation": "isCompiledBy",
+      "identifier": "https://github.com/kunalghosh/gp-gam-optimisation-pipeline",
+      "scheme": "url",
+      "resource_type": "software"
+    }
+  ],
+  "notes": "Replace placeholder DOIs (gmd-2025-XXX, zenodo.YYYYYYY) with the final ones before publishing."
+}

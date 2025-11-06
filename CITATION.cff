@@ -1,0 +1,48 @@
+cff-version: 1.2.0
+message: "If you use this workflow, please cite the following paper and software repository."
+title: "gp-gam-optimisation-pipeline: High-performance workflow for Gaussian Process emulation and GAM fitting"
+authors:
+  - family-names: "Ghosh"
+    given-names: "Kunal"
+    orcid: "https://orcid.org/0000-0002-3179-6844"
+    affiliation: "School of Earth and Environment, University of Leeds, UK"
+  - family-names: "Regayre"
+    given-names: "Leighton A."
+    affiliation: "School of Earth and Environment, University of Leeds, UK"
+
+version: "1.0.0"
+license: "MIT"
+repository-code: "https://github.com/kunalghosh/gp-gam-optimisation-pipeline"
+doi: "10.5281/zenodo.xxxxxxx"        # Replace with actual Zenodo DOI once assigned
+keywords:
+  - Gaussian Process
+  - Generalized Additive Model
+  - Earth System Model
+  - High Performance Computing
+  - PPE
+  - mgcv
+  - DiceKriging
+  - pygam
+  - SLURM
+  - Reproducibility
+
+abstract: >
+  Baseline and optimised implementations of Gaussian Process emulation and
+  Generalized Additive Model fitting for perturbed-parameter ensemble analysis,
+  with a minimal, self-contained example (H2SO4, Jan 2017). Includes conda/R
+  environments, SLURM-ready scripts, and validation utilities for reproducible
+  testing on both local and HPC systems.
+
+preferred-citation:
+  type: article
+  authors:
+    - family-names: "Ghosh"
+      given-names: "Kunal"
+      orcid: "https://orcid.org/0000-0002-3179-6844"
+    - family-names: "Regayre"
+      given-names: "Leighton A."
+  title: "Optimizing Gaussian Process Emulation and Generalized Additive Model Fitting for Rapid, Reproducible Earth System Model Analysis"
+  journal: "Geoscientific Model Development"
+  year: 2025
+  doi: "10.5194/gmd-2025-XXX"          # Replace with final GMD DOI once available
+

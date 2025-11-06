@@ -1,0 +1,7 @@
+# Minimal config for tiny example (edit for your system)
+data_root: ./examples/tiny_sample_inputs
+out_root: ./examples/tiny_sample_outputs
+variable: H2SO4
+month: jan
+backend: local
+concurrency: 4
