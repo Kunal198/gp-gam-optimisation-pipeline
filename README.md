@@ -13,7 +13,7 @@ A **tiny self‑contained example (H₂SO₄, January 2017)** is included to val
 
 ---
 
-## 📂 Repository structure
+## Repository structure
 
 ```
 gp-gam-optimisation-pipeline/
@@ -52,7 +52,7 @@ gp-gam-optimisation-pipeline/
 ```
 ---
 
-## ⚙️ Installation
+## Installation
 
 ### 1) Clone the repository
 ```bash
@@ -74,7 +74,7 @@ This installs: `mgcv`, `DiceKriging`, `lhs`, `sensitivity`, `trapezoid`, `readr`
 
 ---
 
-## 🚀 GP demo (4‑grid quick test)
+## GP demo (4‑grid quick test)
 
 This demo runs Gaussian‑Process emulation for **four grid points** (H₂SO₄, January 2017) using:
 
@@ -86,9 +86,9 @@ By default, both scripts predict on **50,000 rows** (`reduce_size = 50000`), whi
 
 ---
 
-### 🖥️ A. Windows (PowerShell/CMD)
+### A. Windows (PowerShell/CMD)
 
-**Baseline (single‑point quick test):**
+**Baseline (single point quick test):**
 ```bat
 cd "<your path>\gp-gam-optimisation-pipeline"
 conda activate gp-gam
@@ -101,7 +101,7 @@ Rscript scripts\gp\baseline\emulate_baseline.R 36.875 10.3125 jan
 Rscript scripts\gp\baseline\emulate_baseline.R 38.125 2.8125 jan
 ```
 
-**Optimised (single‑point quick test):**
+**Optimised (single point quick test):**
 ```bat
 Rscript scripts\gp\optimised\emulate_optimised.R 34.375 -10.3125 jan
 ```
@@ -112,7 +112,7 @@ Rscript scripts\gp\optimised\emulate_optimised.R 36.875 10.3125 jan
 Rscript scripts\gp\optimised\emulate_optimised.R 38.125 2.8125 jan
 ```
 
-**Baseline vs optimised timing comparison (auto‑runs both):**
+**Baseline vs optimised timing comparison (auto runs both):**
 ```bat
 python scripts\gp\run_compare_gp.py
 ```
@@ -128,7 +128,7 @@ This prints a timing table and writes
 
 ---
 
-### 🐧 B. Linux / macOS
+### B. Linux / macOS
 
 **Baseline (single‑point quick test):**
 ```bash
@@ -155,14 +155,14 @@ python scripts/gp/run_compare_gp.py
 
 ---
 
-# 🧮 HPC (SLURM) — GP emulation workflows
+# HPC (SLURM): GP emulation workflows
 
 Both the **baseline** and **optimised** GP stages can be run efficiently on HPC systems (e.g. **JASMIN**, **ARCHER**) using SLURM array jobs.  
 Each task corresponds to one `(lat, lon, month)` combination, allowing thousands of independent jobs to run in parallel.
 
 ---
 
-## 1️⃣ Baseline GP emulation (R loop version)
+## Baseline GP emulation (R loop version)
 
 The baseline GP workflow uses a single‑core R script (`emulate_baseline.R`) run in a job array.  
 Each SLURM array task reads one line from a task file specifying latitude, longitude, and month.
@@ -197,7 +197,7 @@ TASKFILE=/path/to/gam_latlon_month_table.txt
 # Read i-th line (ilat, ilon, month)
 read ILAT ILON MONTH < <(sed -n "${SLURM_ARRAY_TASK_ID}p" "$TASKFILE")
 
-echo "🚀 Running baseline GP for lat=$ILAT lon=$ILON month=$MONTH"
+echo " Running baseline GP for lat=$ILAT lon=$ILON month=$MONTH"
 
 # === Run emulation ===
 srun Rscript scripts/gp/baseline/emulate_baseline.R "$ILAT" "$ILON" "$MONTH"
@@ -213,11 +213,11 @@ emulated_mean_values_H2SO4_<month>_ilat_<lat>_ilon_<lon>_<N>_w_o_carb.dat
 emulated_sd_values_H2SO4_<month>_ilat_<lat>_ilon_<lon>_<N>_w_o_carb.dat
 ```
 
-> 💡 Use `--array=1-N` where `N = $(wc -l < gam_latlon_month_table.txt)`.
+>  Use `--array=1-N` where `N = $(wc -l < gam_latlon_month_table.txt)`.
 
 ---
 
-## 2️⃣ Optimised GP emulation (vectorised R + array streaming)
+## Optimised GP emulation (vectorised R + array streaming)
 
 The optimised workflow uses `emulate_optimised.R` (vectorised operations + faster I/O).  
 This version runs more efficiently for 50k–1M samples per grid point.
@@ -237,7 +237,7 @@ examples/tiny_sample_outputs/gp_emulation/optimised/lat<lat>/
 
 ---
 
-## ⚙️ Example module setup (HPC)
+##  Example module setup (HPC)
 
 Make sure your environment matches `envs/environment.yml` and the R dependencies.
 
@@ -254,7 +254,7 @@ For reproducibility, keep threading fixed when benchmarking.
 
 ---
 
-## 🗂 Task file format
+##  Task file format
 
 Both workflows use the same task file (one line per job):
 
@@ -273,7 +273,7 @@ python scripts/utils/generate_gam_task_file.py
 
 ---
 
-## ✅ Post‑run checks (GP)
+##  Post run checks (GP)
 
 List outputs:
 ```bash
@@ -287,7 +287,7 @@ sbatch scripts/gp_demo/optimised_array/post_check_resubmit_emulation.sbatch
 
 ---
 
-## 📏 Keeping baseline vs optimised comparable (GP)
+##  Keeping baseline vs optimised comparable (GP)
 
 Edit both R scripts so that they use the **same work size and chunking**:
 
@@ -302,7 +302,7 @@ nPredBreakVal  <- 10000     # use 20000–50000 on HPC if memory allows
 
 ---
 
-## 📊 GP outputs
+##  GP outputs
 
 ```
 examples/tiny_sample_outputs/gp_emulation/
@@ -333,7 +333,7 @@ Example timing table (10,000‑row demo):
 
 ---
 
-# 📈 GAM variance analysis — Baseline (Python) & Optimised (R)
+# GAM variance analysis: Baseline (Python) & Optimised (R)
 
 This stage computes **per‑parameter variance contributions** and **gradient signs** for **H₂SO₄** using:
 
@@ -354,7 +354,7 @@ examples/tiny_sample_outputs/gp_emulation/baseline/lat<lat>/
 
 ---
 
-## 🪟 A. Windows (conda)
+##  A. Windows (conda)
 
 **Setup**
 ```bat
@@ -388,7 +388,7 @@ examples\tiny_sample_outputs\gam_variance\comparison\timing_compare_gam.csv
 
 ---
 
-## 🐧 B. Linux / macOS
+##  B. Linux / macOS
 
 **Setup**
 ```bash
@@ -413,9 +413,9 @@ python scripts/gam/run_compare_gam.py
 
 ---
 
-## 🧮 C. HPC (SLURM)
+##  C. HPC (SLURM)
 
-**Task file (common to both)** — each line defines one job:
+**Task file (common to both)**: each line defines one job:
 ```
 ilat   ilon      month
 34.375 -10.3125  jan
@@ -425,7 +425,7 @@ ilat   ilon      month
 ```
 Path: `/path/to/gam_latlon_month_table.txt`
 
-**1) Baseline GAM (Python / pygam)** — submit job
+**1) Baseline GAM (Python / pygam)**: submit job
 ```bash
 sbatch scripts/gam/baseline/submit_gam_baseline.sbatch
 ```
@@ -449,7 +449,7 @@ conda activate gp-gam
 TASKFILE=/path/to/gam_latlon_month_table.txt
 read ILAT ILON MONTH < <(sed -n "${SLURM_ARRAY_TASK_ID}p" "$TASKFILE")
 
-echo "🚀 GAM baseline: lat=$ILAT lon=$ILON month=$MONTH"
+echo " GAM baseline: lat=$ILAT lon=$ILON month=$MONTH"
 srun python scripts/gam/baseline/GAM_baseline.py --ilat "$ILAT" --ilon "$ILON" --month "$MONTH"
 ```
 
@@ -460,7 +460,7 @@ examples/tiny_sample_outputs/gam_variance/baseline/lat<lat>/
   GAM_gradient_signs_H2SO4_<month>_<N>_ilat_<lat>_ilon_<lon>.dat
 ```
 
-**2) Optimised GAM (R / mgcv::bam)** — submit job
+**2) Optimised GAM (R / mgcv::bam)**: submit job
 ```bash
 sbatch scripts/gam/optimised/submit_gam_optimised.sbatch
 ```
@@ -486,7 +486,7 @@ export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 
 ---
 
-## ⚖️ Perfect output‑matching (GAM)
+##  Perfect output, matching (GAM)
 
 | Step          | Description                                   | Method              |
 |---------------|-----------------------------------------------|---------------------|
@@ -504,9 +504,9 @@ python scripts/gam/run_compare_gam.py    # writes comparison/timing_compare_gam.
 
 ---
 
-## 🧠 Summary
+##  Summary
 
-> ⏱️ *Actual runtime depends on hardware, thread count, and BLAS/OpenMP configuration.*
+>  *Actual runtime depends on hardware, thread count, and BLAS/OpenMP configuration.*
 
 | Script           | Language                | Method                | Runtime (4 pts) | Speedup |
 |------------------|-------------------------|-----------------------|-----------------|---------|
@@ -515,35 +515,38 @@ python scripts/gam/run_compare_gam.py    # writes comparison/timing_compare_gam.
 
 ---
 
-## 🧾 License
+##  License
 
 - **Code:** MIT License (see `LICENSE`)  
 - **Data (tiny example):** Creative Commons Attribution 4.0 International (CC BY 4.0)
 
 ---
 
-## 📚 Citation
+## Citation
 
 If you use this workflow or dataset, please cite:
 
 > **Ghosh, K. & Regayre, L.A. (2025):**  
-> *Optimizing Gaussian Process Emulation and Generalized Additive Model Fitting for Rapid, Reproducible Earth System Model Analysis*  
-> _Geoscientific Model Development_ (Submitted)
+> *Optimizing Gaussian Process Emulation and Generalized Additive Model Fitting for Rapid, Reproducible Earth System Model Analysis.*  
+> _Geoscientific Model Development_ (submitted)
 
-Software DOI (to be added): `10.5281/zenodo.xxxxxxx`  
-Dataset DOI (to be added): `10.5281/zenodo.xxxxxxx`
+**Software:** [10.5281/zenodo.17543623](https://doi.org/10.5281/zenodo.17543623)  
+**Dataset:** [10.5281/zenodo.17544324](https://doi.org/10.5281/zenodo.17544324)
 
----
-
-## 🌐 Related dataset
-
-The accompanying dataset archived on Zenodo provides the input and output artefacts used in this example:
-
-**Zenodo:** *(to be added)* gp‑gam‑optimisation‑dataset (H₂SO₄, Jan 2017)
 
 ---
 
-## 🤝 Acknowledgements
+##  Related dataset
+
+The accompanying dataset archived on Zenodo provides all input and output artefacts
+used in the example and figures described in the paper and software documentation.
+
+**Zenodo:** [gp-gam-optimisation-dataset: Example input and output data for Gaussian Process and GAM workflow (H₂SO₄, January 2017)](https://doi.org/10.5281/zenodo.17544324)
+
+
+---
+
+##  Acknowledgements
 
 Supported by NERC projects:  
 - **A‑CURE** (NE/P013406/1)  
@@ -554,7 +557,7 @@ With thanks to *Ken Carslaw, Leighton Regayre, Jill Johnson, Jonathan Owen, Léa
 
 ---
 
-## ✉️ Contact
+##  Contact
 
 **Kunal Ghosh**  
 School of Earth and Environment, University of Leeds  
